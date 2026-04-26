@@ -1,0 +1,44 @@
+{
+    "name": "Crate",
+    "slug": "crate",
+    "categories": [
+        5
+    ],
+    "date_created": "2026-04-26",
+    "type": "ct",
+    "updateable": true,
+    "privileged": false,
+    "interface_port": 8000,
+    "documentation": "https://github.com/Hotfirenet/crate",
+    "website": "https://github.com/Hotfirenet/crate",
+    "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons/svg/navidrome.svg",
+    "config_path": "/opt/crate/.env",
+    "description": "Crate downloads YouTube Music and Spotify playlists as auto-tagged MP3s via yt-dlp, enriches metadata with MusicBrainz and Cover Art Archive, and delivers files directly into a Navidrome (or any folder-watching music server) library. Controlled via a Telegram bot or HTTP webhook.",
+    "install_methods": [
+        {
+            "type": "default",
+            "script": "ct/crate.sh",
+            "resources": {
+                "cpu": 2,
+                "ram": 1024,
+                "hdd": 8,
+                "os": "Debian",
+                "version": "12"
+            }
+        }
+    ],
+    "default_credentials": {
+        "username": null,
+        "password": null
+    },
+    "notes": [
+        {
+            "text": "The LXC is pre-configured but requires the application code. Push it with: rsync -av --exclude='.git' /path/to/crate/ root@<LXC_IP>:/opt/crate/ then run: /opt/crate/venv/bin/pip install -e /opt/crate",
+            "type": "info"
+        },
+        {
+            "text": "Edit /opt/crate/.env with your TELEGRAM_TOKEN, TELEGRAM_ALLOWED_USERS, and Spotify credentials, then: systemctl start crate-bot crate-webhook",
+            "type": "info"
+        }
+    ]
+}
